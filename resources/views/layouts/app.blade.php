@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>@yield('title','AdminLTE 2 | Dashboard')</title>
+  <!-- <title>@yield('title','AdminLTE 2 | Dashboard')</title> -->
+  <title>{{ config('app.name', 'Laravel') }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -263,7 +264,18 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              @if (Auth::guest())
+                            <!-- <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li> -->
+                             <span class="hidden-xs">Alexander Pierce</span>
+                        @else
+                            <!-- <li class="dropdown"> -->
+                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                              {{ Auth::user()->name }} <span class="caret"></span>
+                              </a>
+              @endif
+              
+              <!-- <span class="hidden-xs">Alexander Pierce</span> -->
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -294,26 +306,49 @@
               <li class="user-footer">
                 <div class="pull-left">
                  <!--  <a href="#" class="btn btn-default btn-flat">Profile</a>     "{{url('top-nav')}}" -->
-              @if(!session("name")) 
+              <!-- @if(!session("name"))  -->
+             
+              @if (Auth::guest())
+                  <!-- <li><a href="{{ route('login') }}">Login</a></li>
+                  <li><a href="{{ route('register') }}">Register</a></li> -->
              
 
 
 
+                <a href= "{{ route('login') }}" class="fa fa-sign-in  btn btn-default btn-flat fa fa-sign-in">Login</a>
+                <a href= "{{ route('register') }}" class="fa fa-registered  btn btn-default btn-flat fa fa-sign-in">Register User</a>
+                <a href= "" class="btn btn-small  btn btn-default btn-flat ">Shop</a> 
 
-                <a href= "{{ url('login_in') }}" class="fa fa-sign-in  btn btn-default btn-flat fa fa-sign-in">Sign IN</a>
-                <a href= "{{ url('userregistered_form') }}" class="fa fa-registered  btn btn-default btn-flat fa fa-sign-in">Register User</a>
-                <a href= "{{ url('shop_register') }}" class="btn btn-small  btn btn-default btn-flat ">Shop Register</a>
+                <!-- <a href= "{{ url('shop_register') }}" class="btn btn-small  btn btn-default btn-flat ">Shop Register</a> --> 
 
                 @else
+                
+                                <a href="#" class="  btn btn-default btn-flat ">
+                                    {{ Auth::user()->name }} 
+                                </a>
+       
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();" class="  btn btn-default btn-flat ">
+                                    Logout
+                                </a>
 
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                    
+                                
+    
+                        @endif
 
-                </div>
+                <!-- </div>
                 <div class="pull-right">
                   <a href="{{ url('logout') }}" class="btn btn-default btn-flat "> Sign out</a>
                   <a href="{{ url('viewuser') }}" class="btn btn-default btn-flat ">View All User</a>
-                </div>
+                </div> -->
 
-                @endif
+
+                <!-- @endif -->
               </li>
             </ul>
           </li>
@@ -340,8 +375,11 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+
+       
+          <p>Alexander Pierce</p>        
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+
         </div>
       </div>
       <!-- search form -->
@@ -366,14 +404,16 @@
             </span>
           </a>
           <ul class="treeview-menu">
+          @if (Auth::guest())
             <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
+        @else
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
+            <span>Layout tanveer</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
@@ -523,6 +563,7 @@
         </li>
         <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
+      @endif
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
@@ -530,6 +571,7 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+ 
 @show
 
 
@@ -551,19 +593,20 @@
 @show
 
     {{-- Here every view will write code here --}}
-    @yield("body-content")
+    <!-- @yield("body-content") -->
+    @yield('content')
     <!-- Main content -->
     
 
 
 @section("footer-section")
-  <footer class="main-footer">
+  <!-- <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.18
     </div>
     <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
     reserved.
-  </footer>
+  </footer> -->
 
   
 

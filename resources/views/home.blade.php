@@ -1,9 +1,7 @@
-@extends('../Ltelayouts/layout')
 
-@section('body-content')
+@extends('layouts.app')
 
-
-
+@section('content')
 
 
 <section class="content">
