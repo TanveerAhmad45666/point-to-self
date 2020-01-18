@@ -329,9 +329,10 @@
        
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();" class="  btn btn-default btn-flat ">
+                                    document.getElementById('logout-form').submit();" class="  btn btn-default btn-flat ">
                                     Logout
                                 </a>
+                                <!-- <a href= "{{ route('register') }}" class="fa fa-registered  btn btn-default btn-flat fa fa-sign-in">Register User</a> -->
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
