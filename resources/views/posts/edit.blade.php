@@ -1,19 +1,35 @@
 @extends('layouts.app')
-
 @section('content')
-
-</style>
-
-  <div class="card uper">
-
+<div class="card uper">
   <div class="card-header">
-    <a class="btn btn-primary" href="{{ route('posts.create') }}"> Create New Post testing</a>
+    Edit Post
   </div>
- 
   <div class="card-body">
-   
-  </table>
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
+      <form method="post" action="{{ route('posts.update', $post->id) }}">
+                @csrf
+
+        @method('PUT')
+
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" class="form-control" name="title" id="post_title" value={{ $post->title }} />
+        </div>
+        <div class="form-group">
+          <label for="price">Body:</label>
+          <textarea name="body" id="post_body" class="form-control">{{ $post->body }}</textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
   </div>
 </div>
-  
 @endsection

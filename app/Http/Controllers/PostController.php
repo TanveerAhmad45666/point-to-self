@@ -34,10 +34,13 @@ class PostController extends Controller
      */
     public function store(Request $request)  //save
     {
-        // $request->validate([    its not  working
-        //  'title' => 'required',
-        //  'body' => 'required',
-        //  ]);
+        $this->validate($request,[  
+            // its not  working
+         'title' => 'required|max:4'
+         
+         ]);
+
+
         // return $request->all();    //its working
         // return $request->get('title');
         // return $request->title;
@@ -78,7 +81,6 @@ class PostController extends Controller
      */
     public function edit(Post $post)  //updata
     {
-        //
         return view('posts.edit',compact('post'));
     }
 

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+<h1>pakista</h1>
   <div class="card uper">
 
   <div class="card-header">
-    <a class="btn btn-primary" href="{{ route('posts.create') }}"> Create New Post testing</a>
+    <a class="btn btn-primary" href="{{ route('supplier.create') }}"> Create New Post testing</a>
   </div>
  
   <div class="card-body">
@@ -18,21 +18,25 @@
     <thead>
         <tr>
           <td>ID</td>
-          <td>Post Title</td>
-          <td>Post Body</td>
+          <td>Name</td>
+          <td>Phone Number</td>
+          <td>city</td>
+          <td>Address</td>
           <td colspan="3">Action</td>
         </tr>
     </thead>
     <tbody>
-        @foreach($posts as $post)
+        @foreach($supplier as $supplier)
         <tr>
-            <td>{{$post->id}}</td>
-            <td>{{$post->title}}</td>
-            <td>{{$post->body}}</td>
-            <td><a href="{{ route('posts.edit',$post->id)}}" class="btn btn-primary">Edit</a></td>
-            <td><a class="btn btn-primary" href="{{ route('posts.show',$post->id) }}">Show</a></td>
+            <td>{{$supplier->id}}</td>
+            <td>{{$supplier->name}}</td>
+            <td>{{$supplier->phonenumber}}</td>
+            <td>{{$supplier->city}}</td>
+            <td>{{$supplier->address}}</td>
+            <td><a href="{{ route('supplier.edit',$suppliers->id)}}" class="btn btn-primary">Edit</a></td>
+            <td><a class="btn btn-primary" href="{{ route('supplier.show',$suppliers->id) }}">Show</a></td>
             <td>
-                <form action="{{ route('posts.destroy', $post->id)}}" method="post">
+                <form action="{{ route('supplier.destroy', $suppliers->id)}}" method="post">
               
                  <input type="hidden" name="_method" value="DELETE">
                  {{csrf_field()}}
