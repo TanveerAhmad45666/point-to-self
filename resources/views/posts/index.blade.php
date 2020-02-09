@@ -2,6 +2,8 @@
 
 @section('content')
 
+</style>
+
   <div class="card uper">
 
   <div class="card-header">
@@ -14,7 +16,7 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-  <table class="table table-striped">
+     <table class="table table-striped">
     <thead>
         <tr>
           <td>ID</td>
@@ -33,10 +35,9 @@
             <td><a class="btn btn-primary" href="{{ route('posts.show',$post->id) }}">Show</a></td>
             <td>
                 <form action="{{ route('posts.destroy', $post->id)}}" method="post">
-              
-                 <input type="hidden" name="_method" value="DELETE">
-                 {{csrf_field()}}
-                   <!-- @csrf
+                <input type="hidden" name="_method" value="DELETE">
+                {{csrf_field()}}
+                  <!-- @csrf
                   @method('DELETE') -->
                   <button class="btn btn-danger" type="submit">Delete</button>
                 </form>

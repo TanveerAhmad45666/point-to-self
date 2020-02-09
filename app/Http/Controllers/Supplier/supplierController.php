@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Supplier;
-use App\SupplierModels\supplier;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,9 +15,9 @@ class supplierController extends Controller
     public function index()
     {
         //
-         $supplier = Supplier::all();
+         $posts = Post::all();
 
-        return view('supplier.index', compact('supplier'));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -27,7 +27,7 @@ class supplierController extends Controller
      */
     public function create()
     {
-         return view('supplier.create');
+        return view('posts.create');
         //
     }
 
@@ -40,26 +40,19 @@ class supplierController extends Controller
     public function store(Request $request)
     {
         //
-        // $request->validate([
+        $request->validate([
 
-        //     'name' => 'required',
+            'title' => 'required',
     
-        //     'phonenumber' => 'required',
-        //     'city' => 'required',
+            'body' => 'required',
     
-        //     ]);
-       
+            ]);
     
+            Post::create($request->all());
     
-         $supplier =new Supplier;
-         $supplier->name =$request->name;
-         $supplier->phonenumber =$request->phonenumber;
-         $supplier->city =$request->city;
-         $supplier->address =$request->address;
-         $supplier->save();
-        return redirect()->route('supplier.index')
-
-        ->with('success','Post created successfully.');
+            return redirect()->route('posts.index')
+    
+                    ->with('success','Post created successfully.');
     
     }
 
@@ -69,9 +62,9 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $suppliers)
+    public function show($id)
     {
-        return view('supplier.show',compact('suppliers'));
+        //
     }
 
     /**
@@ -80,9 +73,9 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $suppliers)
+    public function edit($id)
     {
-         return view('supplier.edit',compact('suppliers'));
+        //
     }
 
     /**
@@ -94,9 +87,7 @@ class supplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $supplier =supplier::findOrFail($id);
-        $supplier->update($request->all());
-        return redirect('/supplier');
+        //
     }
 
     /**
@@ -107,7 +98,6 @@ class supplierController extends Controller
      */
     public function destroy($id)
     {
-         $supplier =supplier::whereId($id)->delete();
-        return redirect('/supplier');
+        //
     }
 }

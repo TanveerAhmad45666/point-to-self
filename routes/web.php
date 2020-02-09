@@ -23,9 +23,11 @@
 //  Route::any("do_login","SessionController@do_login");
 //  Route::get("logout","SessionController@logout");
 Route::resource('posts','PostController');
+
 Route::resource('supplier','Supplier\supplierController');
 Route::resource('forms','FormController');
 // Route::resource('employs','EmployController');
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
