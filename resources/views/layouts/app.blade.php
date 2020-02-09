@@ -492,8 +492,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{ route('supplier.create') }}"><i class="fa fa-circle-o"></i>Add Supplier </a></li>
-              <li><a href="{{ route('supplier.index') }}"><i class="fa fa-circle-o"></i>Manage Supplier </a></li>
+              <!-- <li><a href="{{ route('forms.create') }}"><i class="fa fa-circle-o"></i>Add Supplier </a></li> -->
+              <!-- <li><a href="{{ route('forms.index') }}"><i class="fa fa-circle-o"></i>Manage Supplier </a></li> -->
               <!-- <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> -->
             </ul>
           </li>
@@ -505,8 +505,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="{{ route('supplier.create') }}"><i class="fa fa-circle-o"></i>Add Employ </a></li>
-              <li><a href="{{ route('supplier.index') }}"><i class="fa fa-circle-o"></i>Manage Employ </a></li>
+             <!--  <li><a href="{{ route('create') }}"><i class="fa fa-circle-o"></i>Add Employ </a></li>
+              <li><a href="{{ route('index') }}"><i class="fa fa-circle-o"></i>Manage Employ </a></li> -->
               <!-- <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li> -->
             </ul>
           </li>

@@ -25,6 +25,7 @@
 Route::resource('posts','PostController');
 Route::resource('supplier','Supplier\supplierController');
 Route::resource('forms','FormController');
+// Route::resource('employs','EmployController');
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
